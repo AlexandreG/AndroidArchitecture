@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
 import fr.zzi.androidarchitecture.R
 import fr.zzi.androidarchitecture.feature.daylist.ui.DayListAdapter.DayItemViewHolder
 
@@ -21,12 +21,12 @@ class DayListAdapter(private val context: Context) : RecyclerView.Adapter<DayIte
     }
 
     override fun onBindViewHolder(holder: DayItemViewHolder, position: Int) {
-        val currentItem = data.get(position)
-
-        holder.date.text = currentItem.date
-        holder.title.text = currentItem.title
-        holder.description.text = currentItem.description
-        Picasso.with(context).load(currentItem.imageUrl).into(holder.image)
+        data.get(position).run {
+            holder.date.text = date
+            holder.title.text = title
+            holder.description.text = description
+            Glide.with(context).load(imageUrl).into(holder.image)
+        }
     }
 
     override fun getItemCount(): Int {

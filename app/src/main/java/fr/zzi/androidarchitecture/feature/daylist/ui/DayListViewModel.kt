@@ -45,7 +45,7 @@ class DayListViewModel : ViewModel(), CoroutineScope by MainScope() {
     }
 
     private fun buildImageURL(iconName: String): String {
-        return "http://openweathermap.org/img/w/$iconName.png"
+        return "https://openweathermap.org/img/w/$iconName.png"
     }
 
     override fun onCleared() {
