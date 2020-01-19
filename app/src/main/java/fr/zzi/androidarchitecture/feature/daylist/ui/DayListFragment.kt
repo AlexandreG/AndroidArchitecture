@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import fr.zzi.androidarchitecture.R
-import fr.zzi.androidarchitecture.feature.detailedview.ui.DetailedViewActivity
+import fr.zzi.androidarchitecture.feature.detailedweather.ui.DetailedWeatherActivity
 
 
 class DayListFragment : Fragment(), DayListAdapter.Listener {
@@ -69,7 +69,7 @@ class DayListFragment : Fragment(), DayListAdapter.Listener {
 
     override fun onItemClick(position: Int) {
         context?.let {
-            startActivity(DetailedViewActivity.navigate(it))
+            startActivity(DetailedWeatherActivity.navigate(it))
         }
     }
 

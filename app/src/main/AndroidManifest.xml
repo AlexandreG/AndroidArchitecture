@@ -22,7 +22,7 @@
         </activity>
 
         <activity
-            android:name=".feature.detailedview.ui.DetailedViewActivity"
+            android:name=".feature.detailedweather.ui.DetailedWeatherActivity"
             android:label="@string/activity_detailed_view" />
 
     </application>
