@@ -4,8 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import fr.zzi.androidarchitecture.feature.daylist.data.WeatherRepository
-import fr.zzi.androidarchitecture.feature.daylist.domain.ForecastResult
 import kotlinx.coroutines.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class DayListViewModel : ViewModel(), CoroutineScope by MainScope() {
 
@@ -15,20 +16,36 @@ class DayListViewModel : ViewModel(), CoroutineScope by MainScope() {
         const val NB_FORECAST_DAY = 5
     }
 
-    fun getForecast(): LiveData<ForecastResult> {
-        val result = MutableLiveData<ForecastResult>()
+    fun getForecast(): LiveData<List<DayItemData>> {
+        val result = MutableLiveData<List<DayItemData>>()
 
         launch(Dispatchers.IO) {
-            result.postValue(
-                WeatherRepository.getForecast(
+            val forecastResult = WeatherRepository.getForecast(
                     CITY_LATITUDE,
                     CITY_LONGITUDE,
                     NB_FORECAST_DAY
                 )
-            )
+            val uiItemList = forecastResult.list.map {
+                DayItemData(
+                    formatDate(it.dt),
+                    buildImageURL(it.weather.first().icon),
+                    it.weather.first().main,
+                    it.weather.first().description
+                )
+            }
+            result.postValue(uiItemList)
         }
 
         return result
+    }
+
+    private fun formatDate(timestamp: Long): String {
+        val date = Date(timestamp * 1000)
+        return SimpleDateFormat("dd/MM").format(date)
+    }
+
+    private fun buildImageURL(iconName: String): String {
+        return "http://openweathermap.org/img/w/$iconName.png"
     }
 
     override fun onCleared() {

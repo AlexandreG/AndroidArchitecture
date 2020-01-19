@@ -9,56 +9,46 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import fr.zzi.androidarchitecture.R
-import fr.zzi.androidarchitecture.feature.daylist.domain.DailyForecast
-import fr.zzi.androidarchitecture.feature.daylist.ui.DayListAdapter.WeatherViewHolder
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.*
+import fr.zzi.androidarchitecture.feature.daylist.ui.DayListAdapter.DayItemViewHolder
 
-class DayListAdapter(private val context: Context) : RecyclerView.Adapter<WeatherViewHolder>() {
-    private var data: List<DailyForecast> = emptyList()
+class DayListAdapter(private val context: Context) : RecyclerView.Adapter<DayItemViewHolder>() {
+    private var data: List<DayItemData> = emptyList()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DayItemViewHolder {
         val item =
             LayoutInflater.from(parent.context).inflate(R.layout.layout_weather_item, parent, false)
-        return WeatherViewHolder(item)
+        return DayItemViewHolder(item)
     }
 
-    override fun onBindViewHolder(holder: WeatherViewHolder, position: Int) {
-        val weather = data.get(position).weather[0]
-        val timestamp = data.get(position).dt
+    override fun onBindViewHolder(holder: DayItemViewHolder, position: Int) {
+        val currentItem = data.get(position)
 
-        val date = Date(timestamp * 1000)
-        val formatter: DateFormat = SimpleDateFormat("dd/MM")
-        holder.date.text = formatter.format(date)
-        holder.title.text = weather.main
-        holder.description.text = weather.description
-        Picasso.with(context).load(weather.iconURL).into(holder.image)
+        holder.date.text = currentItem.date
+        holder.title.text = currentItem.title
+        holder.description.text = currentItem.description
+        Picasso.with(context).load(currentItem.imageUrl).into(holder.image)
     }
 
     override fun getItemCount(): Int {
         return data.size
     }
 
-    inner class WeatherViewHolder(view: View) :
-        RecyclerView.ViewHolder(view) {
-        var date: TextView
-        var image: ImageView
-        var title: TextView
-        var description: TextView
+    class DayItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val date: TextView
+        val image: ImageView
+        val title: TextView
+        val description: TextView
 
         init {
-            date = view.findViewById<View>(R.id.item_weather_date) as TextView
-            image =
-                view.findViewById<View>(R.id.item_weather_image) as ImageView
-            title = view.findViewById<View>(R.id.item_weather_title) as TextView
-            description =
-                view.findViewById<View>(R.id.item_weather_description) as TextView
+            date = view.findViewById(R.id.item_weather_date)
+            image = view.findViewById(R.id.item_weather_image)
+            title = view.findViewById(R.id.item_weather_title)
+            description = view.findViewById(R.id.item_weather_description)
         }
     }
 
-    fun setData(dailyForecasts: List<DailyForecast>) {
-        data = dailyForecasts
+    fun setData(dataList: List<DayItemData>) {
+        data = dataList
     }
 
 }

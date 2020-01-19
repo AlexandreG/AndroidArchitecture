@@ -59,8 +59,8 @@ class DayListFragment : Fragment() {
     }
 
     private fun fetchData() {
-        viewModel.getForecast().observe(this, Observer { forecastResult ->
-            adapter.setData(forecastResult.list)
+        viewModel.getForecast().observe(this, Observer { dayItemList ->
+            adapter.setData(dayItemList)
             adapter.notifyDataSetChanged()
         })
 
