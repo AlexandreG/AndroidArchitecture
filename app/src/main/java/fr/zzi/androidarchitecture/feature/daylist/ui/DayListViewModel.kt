@@ -1,5 +1,6 @@
 package fr.zzi.androidarchitecture.feature.daylist.ui
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -39,12 +40,14 @@ class DayListViewModel : ViewModel(), CoroutineScope by MainScope() {
         return result
     }
 
-    private fun formatDate(timestamp: Long): String {
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    fun formatDate(timestamp: Long): String {
         val date = Date(timestamp * 1000)
         return SimpleDateFormat("dd/MM").format(date)
     }
 
-    private fun buildImageURL(iconName: String): String {
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    fun buildImageURL(iconName: String): String {
         return "https://openweathermap.org/img/w/$iconName.png"
     }
 
