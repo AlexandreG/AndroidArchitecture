@@ -12,7 +12,13 @@ import fr.zzi.androidarchitecture.R
 import fr.zzi.androidarchitecture.feature.daylist.ui.DayListAdapter.DayItemViewHolder
 
 class DayListAdapter(private val context: Context) : RecyclerView.Adapter<DayItemViewHolder>() {
-    private var data: List<DayItemData> = emptyList()
+
+    interface Listener {
+        fun onItemClick(position: Int)
+    }
+
+    var data: List<DayItemData> = emptyList()
+    var listener: Listener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DayItemViewHolder {
         val item =
@@ -26,6 +32,10 @@ class DayListAdapter(private val context: Context) : RecyclerView.Adapter<DayIte
             holder.title.text = title
             holder.description.text = description
             Glide.with(context).load(imageUrl).into(holder.image)
+        }
+
+        holder.itemView.setOnClickListener {
+            listener?.onItemClick(position)
         }
     }
 
@@ -46,9 +56,4 @@ class DayListAdapter(private val context: Context) : RecyclerView.Adapter<DayIte
             description = view.findViewById(R.id.day_item_description)
         }
     }
-
-    fun setData(dataList: List<DayItemData>) {
-        data = dataList
-    }
-
 }

@@ -10,9 +10,10 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import fr.zzi.androidarchitecture.R
+import fr.zzi.androidarchitecture.feature.detailedview.ui.DetailedViewActivity
 
 
-class DayListFragment : Fragment() {
+class DayListFragment : Fragment(), DayListAdapter.Listener {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: DayListAdapter
@@ -52,6 +53,7 @@ class DayListFragment : Fragment() {
     private fun initRecyclerView() {
         context?.let { ctxt ->
             adapter = DayListAdapter(ctxt)
+            adapter.listener = this
 
             recyclerView.layoutManager = LinearLayoutManager(context)
             recyclerView.adapter = adapter
@@ -60,10 +62,15 @@ class DayListFragment : Fragment() {
 
     private fun fetchData() {
         viewModel.getForecast().observe(this, Observer { dayItemList ->
-            adapter.setData(dayItemList)
+            adapter.data = dayItemList
             adapter.notifyDataSetChanged()
         })
+    }
 
+    override fun onItemClick(position: Int) {
+        context?.let {
+            startActivity(DetailedViewActivity.navigate(it))
+        }
     }
 
 }
