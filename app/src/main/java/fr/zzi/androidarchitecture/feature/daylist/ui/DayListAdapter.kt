@@ -44,16 +44,10 @@ class DayListAdapter(private val context: Context) : RecyclerView.Adapter<DayIte
     }
 
     class DayItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val date: TextView
-        val image: ImageView
-        val title: TextView
-        val description: TextView
+        val date: TextView = view.findViewById(R.id.day_item_date)
+        val image: ImageView = view.findViewById(R.id.day_item_image)
+        val title: TextView = view.findViewById(R.id.day_item_title)
+        val description: TextView = view.findViewById(R.id.day_item_description)
 
-        init {
-            date = view.findViewById(R.id.day_item_date)
-            image = view.findViewById(R.id.day_item_image)
-            title = view.findViewById(R.id.day_item_title)
-            description = view.findViewById(R.id.day_item_description)
-        }
     }
 }

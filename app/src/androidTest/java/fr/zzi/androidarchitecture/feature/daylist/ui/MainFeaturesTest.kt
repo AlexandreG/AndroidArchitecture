@@ -27,7 +27,8 @@ class MainFeaturesTest {
     var mActivityTestRule = ActivityTestRule(DayListActivity::class.java)
 
     @Test
-    fun mainFeaturesTest() {
+    fun `checkMainScreensCanRun`() {
+        //wait for items to be displayed
         Thread.sleep(2000)
 
         val cardView = onView(

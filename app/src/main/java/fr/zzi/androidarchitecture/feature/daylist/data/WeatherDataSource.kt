@@ -30,8 +30,8 @@ object WeatherDataSource {
     interface RetrofitService {
         @GET("forecast/daily")
         suspend fun getForecast(
-            @Query("appid") apiKey: String?,
-            @Query("units") temperatureUnit: String?,
+            @Query("appid") apiKey: String,
+            @Query("units") temperatureUnit: String,
             @Query("lat") latitude: Double,
             @Query("lon") longitude: Double,
             @Query("cnt") dayNumber: Int
