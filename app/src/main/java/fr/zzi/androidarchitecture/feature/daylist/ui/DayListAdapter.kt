@@ -16,7 +16,7 @@ class DayListAdapter(private val context: Context) : RecyclerView.Adapter<DayIte
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DayItemViewHolder {
         val item =
-            LayoutInflater.from(parent.context).inflate(R.layout.layout_weather_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.layout_day_item, parent, false)
         return DayItemViewHolder(item)
     }
 
@@ -40,10 +40,10 @@ class DayListAdapter(private val context: Context) : RecyclerView.Adapter<DayIte
         val description: TextView
 
         init {
-            date = view.findViewById(R.id.item_weather_date)
-            image = view.findViewById(R.id.item_weather_image)
-            title = view.findViewById(R.id.item_weather_title)
-            description = view.findViewById(R.id.item_weather_description)
+            date = view.findViewById(R.id.day_item_date)
+            image = view.findViewById(R.id.day_item_image)
+            title = view.findViewById(R.id.day_item_title)
+            description = view.findViewById(R.id.day_item_description)
         }
     }
 

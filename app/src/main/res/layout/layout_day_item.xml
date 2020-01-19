@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp"
+    android:layout_marginTop="10dp"
     android:layout_marginStart="15dp"
     android:layout_marginEnd="15dp"
     android:clickable="true"
@@ -15,13 +14,12 @@
     app:cardElevation="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/item_weather_date"
+            android:id="@+id/day_item_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -30,28 +28,28 @@
             tools:text="21/02" />
 
         <ImageView
-            android:id="@+id/item_weather_image"
+            android:id="@+id/day_item_image"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/item_weather_date"
+            app:layout_constraintLeft_toRightOf="@id/day_item_date"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/item_weather_title"
+            android:id="@+id/day_item_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toRightOf="@id/item_weather_image"
+            app:layout_constraintLeft_toRightOf="@id/day_item_image"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Clear" />
 
         <TextView
-            android:id="@+id/item_weather_description"
+            android:id="@+id/day_item_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="@id/item_weather_title"
-            app:layout_constraintTop_toBottomOf="@id/item_weather_title"
+            app:layout_constraintLeft_toLeftOf="@id/day_item_title"
+            app:layout_constraintTop_toBottomOf="@id/day_item_title"
             tools:text="clear sky" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
