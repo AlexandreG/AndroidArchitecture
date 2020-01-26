@@ -1,6 +1,8 @@
 package fr.zzi.androidarchitecture.feature.daylist.data
 
-import fr.zzi.androidarchitecture.feature.daylist.domain.ForecastResult
+import fr.zzi.androidarchitecture.feature.daylist.data.room.RoomWeatherDataSource
+import fr.zzi.androidarchitecture.feature.daylist.data.ws.WsWeatherDataSource
+import fr.zzi.androidarchitecture.feature.daylist.domain.DailyForecast
 import fr.zzi.androidarchitecture.feature.daylist.domain.contract.WeatherRepositoryInterface
 
 object WeatherRepository : WeatherRepositoryInterface {
@@ -9,12 +11,25 @@ object WeatherRepository : WeatherRepositoryInterface {
         cityLatitude: Double,
         cityLongitude: Double,
         dayNumber: Int
-    ): ForecastResult {
-        return WeatherDataSource.getForecast(
-            cityLatitude,
-            cityLongitude,
-            dayNumber
-        )
+    ): List<DailyForecast> {
+        var forecastList = emptyList<DailyForecast>()
+        try {
+            forecastList = WsWeatherDataSource.getForecast(
+                cityLatitude,
+                cityLongitude,
+                dayNumber
+            )
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        if (forecastList.isEmpty()) {
+            forecastList = RoomWeatherDataSource.getForecast()
+        } else {
+            RoomWeatherDataSource.save(forecastList)
+        }
+
+        return forecastList
     }
 
 

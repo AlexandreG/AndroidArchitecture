@@ -1,30 +1,32 @@
-package fr.zzi.androidarchitecture.feature.daylist.data
+package fr.zzi.androidarchitecture.feature.daylist.data.ws
 
 import fr.zzi.androidarchitecture.common.RestClient
-import fr.zzi.androidarchitecture.feature.daylist.domain.ForecastResult
+import fr.zzi.androidarchitecture.feature.daylist.domain.DailyForecast
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-object WeatherDataSource {
+object WsWeatherDataSource {
 
     private val retrofitService: RetrofitService
 
     init {
-        retrofitService = RestClient.createService(RetrofitService::class.java)
+        retrofitService = RestClient.createService(
+            RetrofitService::class.java
+        )
     }
 
     suspend fun getForecast(
         cityLatitude: Double,
         cityLongitude: Double,
         dayNumber: Int
-    ): ForecastResult {
+    ): List<DailyForecast> {
         return retrofitService.getForecast(
             RestClient.API_KEY,
             RestClient.TEMPERATURE_UNIT,
             cityLatitude,
             cityLongitude,
             dayNumber
-        )
+        ).convert()
     }
 
     interface RetrofitService {
@@ -35,7 +37,7 @@ object WeatherDataSource {
             @Query("lat") latitude: Double,
             @Query("lon") longitude: Double,
             @Query("cnt") dayNumber: Int
-        ): ForecastResult
+        ): WsForecastResult
     }
 
 }

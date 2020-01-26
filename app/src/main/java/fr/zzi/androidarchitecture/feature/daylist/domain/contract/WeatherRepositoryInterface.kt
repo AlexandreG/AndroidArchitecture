@@ -1,6 +1,6 @@
 package fr.zzi.androidarchitecture.feature.daylist.domain.contract
 
-import fr.zzi.androidarchitecture.feature.daylist.domain.ForecastResult
+import fr.zzi.androidarchitecture.feature.daylist.domain.DailyForecast
 
 interface WeatherRepositoryInterface {
 
@@ -8,6 +8,6 @@ interface WeatherRepositoryInterface {
         cityLatitude: Double,
         cityLongitude: Double,
         dayNumber: Int
-    ): ForecastResult
+    ): List<DailyForecast>
 
 }

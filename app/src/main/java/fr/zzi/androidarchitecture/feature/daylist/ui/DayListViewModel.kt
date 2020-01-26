@@ -26,7 +26,7 @@ class DayListViewModel : ViewModel(), CoroutineScope by MainScope() {
                     CITY_LONGITUDE,
                     NB_FORECAST_DAY
                 )
-            val uiItemList = forecastResult.list.map {
+            val uiItemList = forecastResult.map {
                 DayItemData(
                     formatDate(it.dt),
                     buildImageURL(it.weather.first().icon),
