@@ -4,12 +4,14 @@ import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import fr.zzi.androidarchitecture.feature.daylist.data.WeatherRepository
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
-class DayListViewModel : ViewModel(), CoroutineScope by MainScope() {
+class DayListViewModel : ViewModel() {
 
     companion object {
         const val CITY_LATITUDE = 47.2260781
@@ -20,7 +22,7 @@ class DayListViewModel : ViewModel(), CoroutineScope by MainScope() {
     fun getForecast(): LiveData<List<DayItemData>> {
         val result = MutableLiveData<List<DayItemData>>()
 
-        launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.IO) {
             val forecastResult = WeatherRepository.getForecast(
                     CITY_LATITUDE,
                     CITY_LONGITUDE,
@@ -51,8 +53,4 @@ class DayListViewModel : ViewModel(), CoroutineScope by MainScope() {
         return "https://openweathermap.org/img/w/$iconName.png"
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        cancel()
-    }
 }
