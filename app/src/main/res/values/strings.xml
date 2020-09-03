@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AndroidArchitecture</string>
-    <string name="activity_title_day_list">Next days weather</string>
-    <string name="activity_detailed_view">Detailed weather</string>
+    <string name="app_name">Football</string>
+    <string name="activity_title_search_team">Search team</string>
+    <string name="activity_player_list">Team</string>
 </resources>
