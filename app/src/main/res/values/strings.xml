@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Football</string>
+    <string name="app_name">Sport</string>
     <string name="activity_title_search_team">Search team</string>
     <string name="activity_player_list">Team</string>
 </resources>

@@ -1,5 +1,6 @@
 package fr.zzi.androidarchitecture.feature.teams.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import fr.zzi.androidarchitecture.R
+import fr.zzi.androidarchitecture.feature.players.ui.PlayersActivity
 import fr.zzi.androidarchitecture.feature.teams.domain.Team
 
 
@@ -77,7 +79,9 @@ class SearchTeamFragment : Fragment(), TeamListAdapter.Listener {
 
     override fun onItemClick(teamName: String) {
         context?.let {
-            //
+            val intent = Intent(it, PlayersActivity::class.java)
+            intent.putExtra(PlayersActivity.EXTRA_TEAM_NAME, teamName)
+            startActivity(intent)
         }
     }
 

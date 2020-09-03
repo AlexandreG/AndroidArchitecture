@@ -21,6 +21,9 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".feature.players.ui.PlayersActivity"
+            android:label="@string/activity_player_list" />
     </application>
 
 </manifest>
