@@ -1,4 +1,4 @@
-package fr.zzi.androidarchitecture.feature.daylist.ui
+package fr.zzi.androidarchitecture.feature.articlelist.ui
 
 
 import android.view.View
@@ -24,7 +24,7 @@ class MainFeaturesTest {
 
     @Rule
     @JvmField
-    var mActivityTestRule = ActivityTestRule(DayListActivity::class.java)
+    var mActivityTestRule = ActivityTestRule(ArticleListActivity::class.java)
 
     @Test
     fun `checkMainScreensCanRun`() {
@@ -33,7 +33,7 @@ class MainFeaturesTest {
 
         val cardView = onView(
             allOf(
-                withId(R.id.fragment_day_list_recycler),
+                withId(R.id.fragment_article_list_recycler),
                 childAtPosition(
                     withId(R.id.activity_day_list_layout),
                     0

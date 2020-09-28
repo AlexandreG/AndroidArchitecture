@@ -5,9 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RestClient {
 
-    private const val URL = "https://api.openweathermap.org/data/2.5/"
-    const val API_KEY = "e373fbdfb7c805a59762e6388e9ede6b"
-    const val TEMPERATURE_UNIT = "metric"
+    private const val URL = "https://aec.lemonde.fr/ws/8/mobile/www/android-phone/"
 
     private val retrofit: Retrofit
 

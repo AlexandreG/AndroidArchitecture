@@ -13,8 +13,8 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name="fr.zzi.androidarchitecture.feature.daylist.ui.DayListActivity"
-            android:label="@string/activity_title_day_list">
+                android:name="fr.zzi.androidarchitecture.feature.articlelist.ui.ArticleListActivity"
+                android:label="@string/activity_title_article_list">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -22,8 +22,8 @@
         </activity>
 
         <activity
-            android:name=".feature.detailedweather.ui.DetailedWeatherActivity"
-            android:label="@string/activity_detailed_view" />
+                android:name=".feature.detailedarticle.ui.DetailedWeatherActivity"
+                android:label="@string/activity_detailed_view" />
 
     </application>
 
