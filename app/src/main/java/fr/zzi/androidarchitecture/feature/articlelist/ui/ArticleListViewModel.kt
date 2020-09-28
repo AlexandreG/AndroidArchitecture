@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import fr.zzi.androidarchitecture.feature.articlelist.data.WeatherRepository
+import fr.zzi.androidarchitecture.feature.articlelist.data.ArticleRepository
 import fr.zzi.androidarchitecture.feature.articlelist.domain.Article
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,7 +17,7 @@ class ArticleListViewModel : ViewModel() {
 
     fun fetchArticles() {
         viewModelScope.launch(Dispatchers.IO) {
-            val articleResult = WeatherRepository.getArticles()
+            val articleResult = ArticleRepository.getArticles()
 
             _articleLiveData.postValue(
                 filterArticles(articleResult.elements)

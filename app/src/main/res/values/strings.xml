@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">Le Monde</string>
     <string name="activity_title_article_list">Le Monde</string>
-    <string name="activity_detailed_view">Detailed weather</string>
 </resources>

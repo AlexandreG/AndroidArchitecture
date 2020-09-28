@@ -21,10 +21,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-                android:name=".feature.detailedarticle.ui.DetailedWeatherActivity"
-                android:label="@string/activity_detailed_view" />
-
     </application>
 
 </manifest>
